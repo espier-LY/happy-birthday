@@ -20,6 +20,7 @@ html, body {
     overflow: hidden;
     background: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    touch-action: manipulation;
 }
 
 /* 容器：全屏显示图片 */
@@ -33,35 +34,19 @@ html, body {
     justify-content: center;
     align-items: center;
     background: #ffffff;
-    opacity: 0;
-    transition: opacity 0.1s ease-out;
 }
 
-#container.visible {
-    opacity: 1;
-}
-
-/* 图片：自适应填充 */
+/* 图片：自适应填充，立即可见 */
 #image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: contain;
     object-position: center;
     image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    -webkit-image-rendering: pixelated;
-}
-
-/* 加载指示器（不可见） */
-#loader {
-    position: fixed;
-    top: -9999px;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    visibility: hidden;
-    pointer-events: none;
+    opacity: 1;
 }
 
 /* 安全区适配（iPhone刘海屏等） */
@@ -76,16 +61,21 @@ html, body {
 
 /* 横屏适配 */
 @media orientation: landscape {
+    html, body {
+        overflow: auto;
+    }
+
     #container {
         overflow: auto;
         -webkit-overflow-scrolling: touch;
     }
 
     #image {
+        position: relative;
         width: auto;
         max-width: 100%;
         height: auto;
-        min-height: 100%;
+        min-height: 100vh;
     }
 }
 
