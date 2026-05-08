@@ -1,10 +1,13 @@
-var image1 = document.getElementById('image1');
-var image2 = document.getElementById('image2');
+var imageEl = document.getElementById('image');
+var hiddenBtn = document.getElementById('hiddenBtn');
 
 function goToSecond() {
-    image1.style.display = 'none';
-    image2.style.display = 'block';
+    imageEl.src = '2.png';
+    hiddenBtn.style.display = 'none';
 }
 
-// 3秒后自动跳转
-setTimeout(goToSecond, 3000);
+hiddenBtn.onclick = goToSecond;
+
+// 预加载第二张图
+var preloader = new Image();
+preloader.src = '2.png';
